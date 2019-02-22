@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,9 +7,71 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./img_source/BackGround_2.png);
+  background-size: cover;
+}
+
+footer {
+  margin-left: 5px;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.btn {
+  width: 50px;
+}
+
+.wrap {
+    display: grid;
+    grid-template-columns: 12% 62% 26%;
+    height: 915px;
+}
+
+.wrap > * {
+  margin: 2px;
+}
+
+.titleimg {
+  width: 300px;
+  margin-top: 20%;
+  margin-left: 10%;
+}
+
+.moonimg {
+  height: 100vh;
+  display: block;
+  position: absolute;
+  top: -750px;
+  animation: spin 160s infinite linear;
+  pointer-events: none;
+  margin-left: 450px;
+}
+
+/*
+@keyframes example {
+  20%   {left:0px; top:0px;}
+  100%  {left:0px; top:200px;}
+}
+*/
+
+@keyframes spin {
+  0%  {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+.taskText {
+  width: 300px;
+}
+
+.duringText {
+  width: 100px;
+}
+
+.textbox {
+  text-align: center;
 }

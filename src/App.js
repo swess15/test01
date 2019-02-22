@@ -1,25 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Counter from './components/Counter';
+import TextForm from './components/TextForm';
+import TextInfoList from './components/TextInfoList';
+import moon from './img_source/Moon_2.png';
 
 class App extends Component {
+  index = 2
+  state = {
+    information: [
+      {
+        index: 0,
+        task: '시험 준비',
+        during: '5'
+      },
+      {
+        index: 1,
+        task: '알바 마무리',
+        during: '3'
+      }
+    ]
+  }
+  handleCreate = (data) => {
+    const { information } = this.state;
+    console.log(data);
+    this.setState({
+      information: information.concat({ index: this.index++, ...data })
+    })
+  }
+  handleRemove = (index) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.filter(info => info.index !== index)
+    })
+  }
+  handleUpdate = (index, data) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.map(
+        info => index === info.index ? {...info, ...data} : info
+      )
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="wrap">
+        <Counter />
+        <img src={moon} className="moonimg" alt="moon" />
+        <TextForm onCreate={this.handleCreate} />
+        <TextInfoList data={this.state.information} onRemove={this.handleRemove} onUpdate={this.handleUpdate} />
       </div>
     );
   }
